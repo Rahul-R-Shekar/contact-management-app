@@ -45,6 +45,70 @@ Place image files in a `screenshots/` folder in the repo root and commit them.
 - **Angular CLI**: 16.0.2
 - **npm**: For package management
 
+## Features
+
+### Frontend Features
+- **Contacts List Page (/)**:
+  - Displays all contacts in a responsive DataTable with sorting, searching, and pagination.
+  - Columns: Name, Email, Phone, Actions (Edit/Delete buttons).
+  - Add Contact button to open modal.
+  - Real-time table refresh after CRUD operations without page reload.
+
+- **Add/Edit Contact Modal**:
+  - Reactive form with FormBuilder and FormGroup.
+  - Fields: Name (required, max 50 chars), Email (required, valid email), Phone (required).
+  - Validation: Real-time error messages for invalid inputs.
+  - Loading spinner during submission.
+  - Success message on add/update, auto-closes modal after 2 seconds.
+  - Handles email uniqueness errors from backend.
+  - Edit mode pre-fills form with selected contact data.
+
+- **Legacy Template-Driven Form (/legacy-form)**:
+  - Simple template-driven form using ngForm and ngModel.
+  - Fields: Name, Email, Phone (all required).
+  - Submits to the same API endpoint as the modal.
+  - Displays success message ("Contact added successfully!") and resets form on success.
+  - Shows error message on failure.
+
+- **Custom Directives**:
+  - `autofocusInvalid`: Applied to form inputs; focuses the first invalid field after form submission.
+  - `onlyNumbers`: Applied to phone input; restricts input to numeric characters only.
+
+- **Services & Dependency Injection**:
+  - `DataService`: Injectable service handling all HTTP calls (GET, POST, PUT, DELETE) using HttpClient.
+  - Components inject DataService; no direct HttpClient usage in components.
+  - Observable-based API calls with error handling.
+
+- **Routing & Navigation**:
+  - Angular Router with routes for / (contacts list) and /legacy-form.
+  - Lazy loading not implemented (small app), but modular structure.
+
+- **Responsive Design**:
+  - Bootstrap 5 for styling, modals, and layout.
+  - Mobile-friendly table and forms.
+
+### Backend Features
+- **RESTful API**:
+  - Base path: `/api/contacts`
+  - Endpoints: GET (list), POST (create), PUT (update), DELETE (delete).
+  - JSON request/response format.
+  - CORS enabled for frontend origin.
+
+- **Data Validation & Error Handling**:
+  - Email uniqueness enforced at database level.
+  - Required fields validation.
+  - Centralized error handler middleware for 400, 404, 500 responses.
+  - Custom error messages (e.g., "Email already exists").
+
+- **Database Integration**:
+  - MongoDB with Mongoose ODM.
+  - Contact schema: _id (ObjectId), name (String, max 50), email (String, unique), phone (String).
+  - Connection handling with retry and error logging.
+
+- **Additional Routes**:
+  - `/`: Welcome message.
+  - `/ping`: Health check (returns "pong").
+
 ## Setup and Run Steps
 
 ### Prerequisites
@@ -198,8 +262,8 @@ contactapp/
 │   ├── config/db.js        # MongoDB connection
 │   ├── controllers/contact.controller.js  # CRUD logic
 │   ├── middleware/errorHandler.js  # Global error handling
-│   ├── models/contact.model.js  # Mongoose schema
-│   ├── routes/contact.routes.js  # API routes
+│   ├── models/contact.model.js     # Mongoose schema
+│   ├── routes/contact.routes.js    # API routes
 │   ├── server.js           # Express app setup (CORS, routes, error handler)
 │   ├── .env                # Environment vars (create if missing)
 │   └── package.json
@@ -217,3 +281,6 @@ Push to GitHub:
 5. Add `.gitignore` for `node_modules/`, `.env`, `dist/`.
 
 Include screenshots in repo for deliverables.
+
+## Repository
+[GitHub Repository](https://github.com/Rahul-R-Shekar/contact-management-app)
