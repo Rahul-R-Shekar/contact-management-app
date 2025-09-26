@@ -31,7 +31,7 @@ Place image files in a `screenshots/` folder in the repo root and commit them.
 - **Other**: Zone.js ~0.13.0, TSLib ^2.5.0
 
 ### Backend (server/)
-- **Node.js**: v18+ (Runtime)
+- **Node.js**: v16+ (Runtime)
 - **Express**: ^5.1.0 (Web framework)
 - **Mongoose**: ^8.18.2 (MongoDB ODM)
 - **CORS**: ^2.8.5 (Cross-origin requests)
@@ -112,7 +112,7 @@ Place image files in a `screenshots/` folder in the repo root and commit them.
 ## Setup and Run Steps
 
 ### Prerequisites
-- Node.js (v18+)
+- Node.js (v16+)
 - MongoDB (install locally via Homebrew: `brew install mongodb-community` or use MongoDB Atlas for cloud)
 - Git (for repo cloning)
 
